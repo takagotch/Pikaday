@@ -91,3 +91,31 @@ i18n: {
   weekdaysShort : []
 }
 ```
+
+```js
+// pikaday.js
+(function (root, factory)
+{
+  'use strict';
+  
+  var moment;
+  if (typeof exports === 'object') {
+    try { moment = require('moment'); } catch (e) {}
+    module.exports = factory(moment);
+  } else if (typeof define === 'function' && define.amd) {
+    define(function (req)
+    {
+      var id = 'moment';
+      try { moment = req(id); } catch (e) {}
+      return factory(moment);
+    });
+  } else {
+    root.Pikaday = factory(root.moment);
+  }
+}(this, function (moment)
+{
+
+
+  return Pikaday;
+}));
+```
